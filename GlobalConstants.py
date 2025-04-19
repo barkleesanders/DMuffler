@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
-__author__  = "Blaze Sanders"
-__email__   = "dev@blazesanders.com"
-__status__  = "Development"
-__date__    = "Late Updated: 2022-12-27"
-__doc__     = "Useful global constants for the entire TesCustoms TesMuffler library"
+__authors__    = ["Blaze Sanders"]
+__email__      = "dev@blazesanders.com"
+__license__    = "MIT License"
+__status__     = "Development"
+__deprecated__ = "False"
+__version__    = "0.0.1"
+__doc__        = "Useful global constants for the entire EV Customs DMuffler library"
 """
-# Global print() statement toggle for entire TesMuffler library
+
+# Global print() statement toggle for entire DMuffler library
 DEBUG_STATEMENTS_ON = True
 
 # Vehicle make name CONTSTANTS - Yes these are sorted best to worst :)
@@ -23,10 +26,10 @@ MODEL_3 = "3"
 MODEL_X = "X"
 MODEL_Y = "Y"
 CYBER_TRUCK = "C"
-ATV = "TESLA_ATV"
-ROADSTER_V2 = "TESLA-ROADSTER-V2"
+ATV = "TESLA ATV"
+ROADSTER_V2 = "TESLA ROADSTER V2"
 SEMI_TRUCK = "SEMI"
-ALL_TESLAS = "S3XY-CARS"    # https://www.quora.com/Why-do-the-Tesla-models-spell-out-S3XY
+ALL_TESLAS = "S3XY CARS"    # https://www.quora.com/Why-do-the-Tesla-models-spell-out-S3XY
 
 MODEL_ = "SURYA"            #TODO Once model name is made public by Aptera Motors
 
@@ -52,7 +55,7 @@ VIOLET = 6
 GREY = 7
 WHITE = 8
 
-# Moving hardware CONTSTANTS
+# Physical hardware CONTSTANTS
 GO_PEDAL = 0                    # Pedal furthest right in the UK and USA
 GO_PEDAL_POSITION_CAN_BUS_IDENTIFIER = [0b11_111_111_111]           #TODO or 29bit?
 
@@ -88,12 +91,12 @@ CLUSTER_GEN_MODEL_TECHNIQUE = "TODO"    # Most human sounding model with large f
 HTS_MODEL_TECHNIQUE = "TODO"            # Semi-human sounding model with reduced files sizes
 
 # Dimensional unit CONSTANTS
-PERCENTAGE_UNITS = '%'
-MILLIMETER_UNITS = 'mm'
-CENTIMETER_UNITS = 'cm'
+PERCENTAGE_UNITS = "%"
+MILLIMETER_UNITS = "mm"
+CENTIMETER_UNITS = "cm"
 
 # Datatbase Table Name & HTTP error code  CONSTANTS
-VALID_SUPABASE_TABLE_NAMES = ["Users", "Vehicles", "EngineSounds", "TODO"]      #TODO
+DATABASE_TABLE_NAMES = ["Users", "Vehicles", "EngineSounds", "TODO"]      #TODO
 DATABASE_OPERATION_FAILED = 400
 DATABASE_OPERATION_SUCCESFULL = 200
 SNAPSHOT_SIZE = 1000                    # OTA Update payload size [0x00] * 1000
@@ -125,4 +128,4 @@ SAE_J1850_VPW = 2
 class GlobalConstants:
 
     if __name__ == "__main__":
-        print("Open GlobalConstants.py to see CONSTANTS used in the TesCustoms TesMuffler library")
+        print("Open GlobalConstants.py to see CONSTANTS used in the EV Customs DMuffler library")
