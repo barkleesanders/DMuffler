@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
 __authors__    = ["Blaze Sanders"]
-__email__      = "dev@blazesanders.com"
+__email__      = ["dev@blazesanders.com"]
 __license__    = "MIT"
-__status__     = "Development
+__status__     = "Development"
 __deprecated__ = "False"
-__version__    = "0.0.1"
+__version__    = "2025.0"
 __doc__        = "Code entry point for DMuffler embedded application"
 """
 
@@ -26,7 +26,11 @@ import peek
 import GlobalConstants as GC
 
 
-def intergration_test():
+def integration_test():
+    """
+    https://en.wikipedia.org/wiki/Integration_testing
+
+    """
     pass
 
 
@@ -45,10 +49,10 @@ if __name__ == "__main__":
         peek("DMuffler booting in DEV mode", color="red")
         peek("Install SQLite system wide on Raspberry Pi Compute Module 4 using:", color="yellow")
         peek("sudo apt install sqlite3", color="white")
-
+	
     elif 'TESTING' in args.mode:
         peek("DMuffler booting in TESTING mode", color="red")
-        intergration_test()
+        integration_test()
 
     elif 'PRODUCTION' in args.mode:
         peek("DMuffler booting in standard PRODUCTION mode", color="green")
