@@ -17,8 +17,13 @@ import threading       # https://docs.python.org/3/library/threading.html
 try:
     # Peek makes printing debug information easy and adds basic benchmarking functionality (see https://salabim.org/peek)
     # pip install peek-python
-    import peek
+    from peek import peek  # type: ignore
+except ModuleNotFoundError:  # pragma: no cover - optional dependency
+    def peek(message: str, **_kwargs) -> None:
+        """Fallback debug printer when :mod:`peek` is unavailable."""
+        print(message)
 
+try:
     # Audio analysis, with building blocks necessary to create music information retrieval systems
     # https://librosa.org/doc/latest/index.html
     import librosa
@@ -32,15 +37,15 @@ try:
     # https://pypi.org/project/pynput/
     from pynput import keyboard
 
-except ImportError :
-    peek("Please verify that .venvDMuffler virtual environment is running, if not run: ", color="red")
+except ModuleNotFoundError as exc:  # pragma: no cover - runtime guard
+    peek("Please verify that .venvDMuffler virtual environment is running", color="red")
     peek("source .venvDMuffler/bin/activate", color="yellow")
     peek("pip install -r requirements.txt", color="yellow")
-    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-
-except ModuleNotFoundError:
-    peek("Python can't find module in sys.path or there was a typo in requirements.txt or import statements above!", color="red")
-
+    peek(f"Missing dependency: {exc}", color="red")
+    librosa = None
+    sd = None
+    np = None
+    keyboard = None
 
 class EngineSoundPitchShifter:
 
