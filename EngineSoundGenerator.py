@@ -27,7 +27,7 @@ class EngineSoundGenerator:
     FORD_MODEL_T = "FordModelT.wav"
     FORD_MUSTANG_GT350 = "FordMustangGT350.wav"
 
-    def __init__(self, baseAudio):
+    def __init__(self, base_audio):
         self.log = logging.getLogger(__name__)
         self.EngineSoundsDict = {
             EngineSoundGenerator.MC_LAREN_F1: 0,
@@ -39,14 +39,14 @@ class EngineSoundGenerator:
             EngineSoundGenerator.FORD_MUSTANG_GT350: 6,
         }
 
-        if baseAudio not in self.EngineSoundsDict:
+        if base_audio not in self.EngineSoundsDict:
             self.log.info(
                 "Invalid engine sound, defaulting to McLaren F1")
-            baseAudio = EngineSoundGenerator.MC_LAREN_F1
+            base_audio = EngineSoundGenerator.MC_LAREN_F1
 
-        self.engineSoundID = self.EngineSoundsDict[baseAudio]
-        self.baseAudioFilename = baseAudio
-        path = "./Sounds/" + baseAudio
+        self.engineSoundID = self.EngineSoundsDict[base_audio]
+        self.baseAudioFilename = base_audio
+        path = "./Sounds/" + base_audio
         if sa is not None:
             try:
                 self.EngineSoundWaveObject = sa.WaveObject.from_wave_file(path)
@@ -76,7 +76,7 @@ class EngineSoundGenerator:
         if playObj is not None:
             playObj.stop()
 
-    def setNewSound(self, newSound):
+    def set_new_sound(self, newSound):
         """Change the loaded engine sound."""
         if newSound not in self.EngineSoundsDict:
             self.log.warning("New sound was NOT set. Keeping current sound")
@@ -93,17 +93,18 @@ class EngineSoundGenerator:
         else:
             self.EngineSoundWaveObject = None
 
-    def getBaseAudio(self):
+    def get_base_audio_filename(self):
         return self.baseAudioFilename
 
-    def getbaseAudioFilename(self):
+    def get_engine_sound_id(self):
         return int(self.engineSoundID)
 
     @staticmethod
     def unitTest():
         print("STARTING EngineSoundGenerator.py Unit Test")
         obj = EngineSoundGenerator(EngineSoundGenerator.MC_LAREN_F1)
-        assert obj.getbaseAudioFilename() == obj.EngineSoundsDict[EngineSoundGenerator.MC_LAREN_F1]
+        assert obj.get_engine_sound_id() == obj.EngineSoundsDict[EngineSoundGenerator.MC_LAREN_F1]
+        assert obj.get_base_audio_filename() == EngineSoundGenerator.MC_LAREN_F1
         playObj = obj.startAudio()
         obj.stopAudio(playObj)
         print("EngineSoundGenerator.py Unit Test COMPLETE")
@@ -111,3 +112,5 @@ class EngineSoundGenerator:
 
 if __name__ == "__main__":
     EngineSoundGenerator.unitTest()
+
+__all__ = ["EngineSoundGenerator"]

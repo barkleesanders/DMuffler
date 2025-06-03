@@ -45,7 +45,11 @@ except ModuleNotFoundError:
 class EngineSoundPitchShifter:
 
     def __init__(self):
-        pass
+        """Initialize playback state."""
+        self.playing = False
+        self.pitch_factor = 1.0
+        self.current_frame = 0
+        self.running = True
 
     def on_press(self, key):
         try:
