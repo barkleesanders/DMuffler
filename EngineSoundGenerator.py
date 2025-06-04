@@ -2,9 +2,10 @@
 """
 EngineSoundGenerator
 --------------------
-Simple utility class used in DMuffler to play engine sounds. The original file
-contained unresolved merge conflicts. This version keeps a minimal feature set so
-the module can be imported and unit tested without the audio library installed.
+Simple utility class used in DMuffler to play engine sounds.
+The original file contained unresolved merge conflicts.
+This version keeps a minimal feature set so the module can be imported and unit
+tested without the audio library installed.
 """
 
 import logging
@@ -105,8 +106,14 @@ class EngineSoundGenerator:
     def unitTest():
         print("STARTING EngineSoundGenerator.py Unit Test")
         obj = EngineSoundGenerator(EngineSoundGenerator.PORSCHE_911)
-        assert obj.get_engine_sound_id() == obj.EngineSoundsDict[EngineSoundGenerator.PORSCHE_911]
-        assert obj.get_base_audio_filename() == EngineSoundGenerator.PORSCHE_911
+        assert (
+            obj.get_engine_sound_id()
+            == obj.EngineSoundsDict[EngineSoundGenerator.PORSCHE_911]
+        )
+        assert (
+            obj.get_base_audio_filename()
+            == EngineSoundGenerator.PORSCHE_911
+        )
         playObj = obj.startAudio()
         obj.stopAudio(playObj)
         print("EngineSoundGenerator.py Unit Test COMPLETE")
