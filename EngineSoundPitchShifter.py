@@ -26,16 +26,16 @@ except ModuleNotFoundError:  # pragma: no cover - optional dependency
 try:
     # Audio analysis, with building blocks necessary to create music information retrieval systems
     # https://librosa.org/doc/latest/index.html
-    import librosa
+    import librosa  # type: ignore[import-not-found]
 
     # Play and record NumPy arrays containing audio signals.
     # https://python-sounddevice.readthedocs.io/
-    import sounddevice as sd
-    import numpy as np
+    import sounddevice as sd  # type: ignore[import-not-found]
+    import numpy as np  # type: ignore[import-not-found]
 
     # Control and monitor input devices (mouse & keyboard)
     # https://pypi.org/project/pynput/
-    from pynput import keyboard
+    from pynput import keyboard  # type: ignore[import-not-found]
 
 except ModuleNotFoundError as exc:  # pragma: no cover - runtime guard
     peek("Please verify that .venvDMuffler virtual environment is running", color="red")
@@ -57,6 +57,9 @@ class EngineSoundPitchShifter:
         self.running = True
 
     def on_press(self, key):
+        if keyboard is None:
+            peek("Keyboard controls unavailable", color="yellow")
+            return
         try:
             # Space bar controls playback
             if key == keyboard.Key.space:

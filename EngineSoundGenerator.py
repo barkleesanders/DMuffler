@@ -10,7 +10,7 @@ the module can be imported and unit tested without the audio library installed.
 import logging
 
 try:
-    import simpleaudio as sa
+    import simpleaudio as sa  # type: ignore[import-not-found]
 except ModuleNotFoundError:
     sa = None
     print("simpleaudio not installed - audio playback disabled")
@@ -21,7 +21,9 @@ class EngineSoundGenerator:
 
     MC_LAREN_F1 = "McLarenF1.wav"
     LA_FERRARI = "LaFerrari.wav"
-    PORCSHE_911 = "Porcshe911.wav"
+    PORSCHE_911 = "Porsche911.wav"
+    # Backwards compatibility for typo in early revisions
+    PORCSHE_911 = PORSCHE_911
     BMW_M4 = "BMW_M4.wav"
     JAGUAR_E_TYPE_SERIES_1 = "JaguarEtypeSeries1.wav"
     FORD_MODEL_T = "FordModelT.wav"
@@ -32,7 +34,7 @@ class EngineSoundGenerator:
         self.EngineSoundsDict = {
             EngineSoundGenerator.MC_LAREN_F1: 0,
             EngineSoundGenerator.LA_FERRARI: 1,
-            EngineSoundGenerator.PORCSHE_911: 2,
+            EngineSoundGenerator.PORSCHE_911: 2,
             EngineSoundGenerator.BMW_M4: 3,
             EngineSoundGenerator.JAGUAR_E_TYPE_SERIES_1: 4,
             EngineSoundGenerator.FORD_MODEL_T: 5,
@@ -102,9 +104,9 @@ class EngineSoundGenerator:
     @staticmethod
     def unitTest():
         print("STARTING EngineSoundGenerator.py Unit Test")
-        obj = EngineSoundGenerator(EngineSoundGenerator.MC_LAREN_F1)
-        assert obj.get_engine_sound_id() == obj.EngineSoundsDict[EngineSoundGenerator.MC_LAREN_F1]
-        assert obj.get_base_audio_filename() == EngineSoundGenerator.MC_LAREN_F1
+        obj = EngineSoundGenerator(EngineSoundGenerator.PORSCHE_911)
+        assert obj.get_engine_sound_id() == obj.EngineSoundsDict[EngineSoundGenerator.PORSCHE_911]
+        assert obj.get_base_audio_filename() == EngineSoundGenerator.PORSCHE_911
         playObj = obj.startAudio()
         obj.stopAudio(playObj)
         print("EngineSoundGenerator.py Unit Test COMPLETE")
