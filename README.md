@@ -1,6 +1,20 @@
 # DMuffler
 Digital muffler for electric and hybrid vehicles
 
+## Desktop development checks
+
+The pinned desktop environment uses Python 3.13 on macOS. Install wheel packages,
+then run the software checks with synthetic audio and a local HTTP fixture:
+
+```sh
+python3.13 -m venv .venv
+.venv/bin/python -m pip install --only-binary=:all: -r requirements.txt
+.venv/bin/python -m pip check
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+The hardware integration remains a separate verification step.
+
 
 Hardware Required: <br>
 1) Hardware Dongle from CANOPi [TesCustoms P/N 100-0001-A](https://github.com/TesCustoms/TesMufflerDongle) <br>
